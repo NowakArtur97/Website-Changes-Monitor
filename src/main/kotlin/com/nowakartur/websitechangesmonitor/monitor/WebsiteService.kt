@@ -13,7 +13,16 @@ class WebsiteService(private val websiteRepository: WebsiteRepository) {
     fun findAll(): List<WebsiteEntity> = websiteRepository.findAll()
 
     fun saveAll(websites: List<WebsiteEntity>) {
+        if (websites.isEmpty()) {
+            return
+        }
         websiteRepository.saveAll(websites)
-        logger.info("Saved website: {}", websites)
+        logger.info("Saved websites: {}", websites)
+    }
+
+    fun updateCurrentValue(website: WebsiteEntity, newValue: String) {
+        website.currentValue = newValue
+        websiteRepository.save(website)
+        logger.info("Update value for website: {} with value: {}", website.url, newValue)
     }
 }

@@ -23,5 +23,5 @@ data class WebsiteEntity(
     private val id: Long = 0
 
     @Column(name = "current_value", nullable = false)
-    val currentValue: String = ""
+    var currentValue: String = ""
 }

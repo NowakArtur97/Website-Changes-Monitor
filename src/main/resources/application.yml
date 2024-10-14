@@ -17,3 +17,9 @@ spring:
 server:
   port: 8000
 
+app:
+  scheduler:
+    enabled: true
+    monitor:
+      initial-delay-minutes: 0
+      fixed-delay-minutes: 1
