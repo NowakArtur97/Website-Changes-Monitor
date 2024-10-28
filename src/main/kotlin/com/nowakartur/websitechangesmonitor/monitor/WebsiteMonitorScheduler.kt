@@ -4,7 +4,10 @@ import org.jsoup.Jsoup
 import org.springframework.scheduling.annotation.Scheduled
 import java.util.concurrent.TimeUnit
 
-class WebsiteMonitorScheduler(private val websiteService: WebsiteService) {
+class WebsiteMonitorScheduler(
+    private val websiteService: WebsiteService,
+    private val soundPlayer: SoundPlayer
+) {
 
     @Scheduled(
         initialDelayString = "\${app.scheduler.monitor.initial-delay-minutes}",
@@ -20,6 +23,7 @@ class WebsiteMonitorScheduler(private val websiteService: WebsiteService) {
                     .text()
                 if (newValue.isNotBlank() && newValue != it.currentValue) {
                     websiteService.updateCurrentValue(it, newValue)
+                    soundPlayer.playNotificationSound("/sounds/notification.wav")
                 }
             }
     }

@@ -11,6 +11,6 @@ import org.springframework.scheduling.annotation.EnableScheduling
 class SchedulerConfiguration {
 
     @Bean
-    fun websiteMonitorScheduler(websiteService: WebsiteService): WebsiteMonitorScheduler =
-        WebsiteMonitorScheduler(websiteService)
+    fun websiteMonitorScheduler(websiteService: WebsiteService, soundPlayer: SoundPlayer): WebsiteMonitorScheduler =
+        WebsiteMonitorScheduler(websiteService, soundPlayer)
 }
